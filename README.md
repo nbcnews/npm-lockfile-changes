@@ -4,6 +4,11 @@
 
 Creates a comment inside Pull Request with the human-readable summary of the changes to the `package-lock.json` file. Works in public and private repositories and offers a few customization options.
 
+## Modifications from `codepunkt/npm-lockfile-changes`
+
+* Forks from `rvanvelzen/npm-lockfile-changes`, who had already added lockfile v3 support.
+* Updates dependencies to run on node@20.
+
 ## Usage
 
 ### ⚡️ Workflow Example
@@ -22,9 +27,9 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: NPM Lockfile Changes
-        uses: codepunkt/npm-lockfile-changes@main
+        uses: caire-health/npm-lockfile-changes@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # Optional inputs, can be deleted safely if you are happy with default values.
