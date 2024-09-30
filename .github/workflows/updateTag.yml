@@ -1,0 +1,27 @@
+name: Update Tag on Release
+on:
+  release:
+    types:
+      - 'released'
+
+jobs:
+  update-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract version from release tag
+        id: extract_version
+        run: |
+          VERSION=$(echo "${{ github.event.release.tag_name }}" | grep -oE '^v[0-9]+' | cut -c2-)
+          echo "major_version=v$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create or update tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG_NAME=${{ steps.extract_version.outputs.major_version }}
+          git tag -f $TAG_NAME ${{ github.sha }}
+          git push origin $TAG_NAME --force
