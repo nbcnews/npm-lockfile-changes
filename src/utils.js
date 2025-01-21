@@ -7,6 +7,7 @@ export const STATUS = {
   DOWNGRADED: 'DOWNGRADED',
   REMOVED: 'REMOVED',
   UPDATED: 'UPDATED',
+  UNKNOWN: 'UNKNOWN'
 }
 
 export const countStatuses = (lockChanges, statusToCount) =>
@@ -74,6 +75,7 @@ export const diffLocks = (previous, current) => {
           }
         } catch (error) {
           console.error(error);
+          changes[key].status = STATUS.UNKNOWN
         }
       }
     }
