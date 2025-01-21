@@ -3,10 +3,11 @@ const { markdownTable } = require('markdown-table')
 const { STATUS, countStatuses } = require('./utils')
 
 const ASSETS_URL = {
-  ADDED: 'https://git.io/J38HP',
-  DOWNGRADED: 'https://git.io/J38ds',
-  REMOVED: 'https://git.io/J38dt',
-  UPDATED: 'https://git.io/J38dY',
+  ADDED: 'https://raw.githubusercontent.com/nbcnews/npm-lockfile-changes/refs/heads/feat-updated-badges/assets/added.svg',
+  DOWNGRADED: 'https://raw.githubusercontent.com/nbcnews/npm-lockfile-changes/refs/heads/feat-updated-badges/assets/downgraded.svg',
+  REMOVED: 'https://raw.githubusercontent.com/nbcnews/npm-lockfile-changes/refs/heads/feat-updated-badges/assets/removed.svg',
+  UPDATED: 'https://raw.githubusercontent.com/nbcnews/npm-lockfile-changes/refs/heads/feat-updated-badges/assets/updated.svg',
+  UNKNOWN: 'https://raw.githubusercontent.com/nbcnews/npm-lockfile-changes/refs/heads/feat-updated-badges/assets/unknown.svg',
 }
 
 const getStatusLabel = (status) =>
@@ -41,6 +42,7 @@ export const createSummary = (lockChanges) =>
       createSummaryRow(lockChanges, STATUS.UPDATED),
       createSummaryRow(lockChanges, STATUS.DOWNGRADED),
       createSummaryRow(lockChanges, STATUS.REMOVED),
+      createSummaryRow(lockChanges, STATUS.UNKNOWN),
     ].filter(Boolean),
     { align: ['l', 'c'], alignDelimiters: false }
   )
