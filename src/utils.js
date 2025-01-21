@@ -66,10 +66,14 @@ export const diffLocks = (previous, current) => {
         delete changes[key]
       } else {
         changes[key].current = currentPackages[key].version
-        if (semverCompare(changes[key].previous, changes[key].current) === 1) {
-          changes[key].status = STATUS.DOWNGRADED
-        } else {
-          changes[key].status = STATUS.UPDATED
+        try {
+          if (semverCompare(changes[key].previous, changes[key].current) === 1) {
+            changes[key].status = STATUS.DOWNGRADED
+          } else {
+            changes[key].status = STATUS.UPDATED
+          }
+        } catch (error) {
+          console.error(error);
         }
       }
     }
