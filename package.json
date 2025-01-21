@@ -1,6 +1,6 @@
 {
   "name": "@codepunkt/npm-lockfile-changes",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "dist/index.js",
   "repository": "github:codepunkt/npm-lockfile-changes",
   "author": "Christoph Werner <christoph@codepunkt.de>",
